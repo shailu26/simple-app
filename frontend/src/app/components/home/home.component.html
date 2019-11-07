@@ -1,0 +1,50 @@
+<ngx-spinner bdOpacity=0.9 bdColor="#333" size="medium" color="#fff" type="ball-circus" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <i class="fa fa-home fa-2x" data-toggle="tooltip" data-placement="top" title="Go to home" routerLink="/"></i>
+  </a>
+</nav>
+<div class="container-fluid">
+
+  <div routerLink="/newuser" class="text-right mt-3">
+    <button type="button" class="btn btn-outline-primary">Create</button>
+  </div>
+  <div *ngIf="!users.length" class="no-user text-center font-weight-bold text-danger">
+    No users Found
+  </div>
+  <div *ngIf="users.length" class="users mt-3">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-lg-3 col-md-6" *ngFor="let user of users; let i = index;">
+        <div class="image-flip">
+          <div class="mainflip">
+            <div class="frontside">
+              <div class="card">
+                <i (click)="editUser(user._id)" class="fa fa-edit edit-user cursor-pointer" data-toggle="tooltip"
+                  data-placement="top" title="edit user"></i>
+
+                <div class="card-body text-center">
+                  <p *ngIf="user.photo">
+
+                    <img class=" img-fluid" [src]="linkImg(user.photo)" alt="card image" />
+
+                  </p>
+                  <div *ngIf="!user.photo" class="no-image">
+                    {{user?.firstName|slice:0:1}} {{user?.lastName | slice:0:1}}
+                  </div>
+                  <h4 class="card-title">{{user.firstName + ' ' + user.lastName}} <span
+                      class="badge badge-primary pos-bt-3">{{user.jobTitle}}</span></h4>
+                  <p><i class="fa fa-envelope mr-1"></i>{{user.email}}</p>
+                  <p class="card-text"><i class="fa fa-phone mr-1"></i>{{user.phone}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

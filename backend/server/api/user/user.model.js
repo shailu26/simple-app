@@ -3,18 +3,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
-    name: { type: String, required: true},
-    username: { type: String, default: null},
+    firstName: { type: String, required: true},
+    lastName: { type: String, default: null},
     email: {type: String, required: true},
-    password: {type: String, required: true},
-    address: {
-        line1: {type:String},
-        line2: String,
-        city: {type:String},
-        state: {type:String},
-        pin: {type:Number}
-    },
-    phone: {type:Number}
+    phone: {type: String, required: true},
+    jobTitle: {type:String},
+    photo: {type:String, default: null}
 });
 
 export default mongoose.model('User', UserSchema);

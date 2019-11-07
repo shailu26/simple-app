@@ -1,0 +1,52 @@
+<ng-snotify></ng-snotify>
+<ngx-spinner bdOpacity=0.9 bdColor="#333" size="medium" color="#fff" type="ball-circus" [fullScreen]="true">
+  <p style="color: white"> Loading... </p>
+</ngx-spinner>
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <i class="fa fa-home fa-2x" data-toggle="tooltip" data-placement="top" title="Go to home" routerLink="/"></i>
+  </a>
+</nav>
+<div class="body">
+
+  <h1>
+    Edit User <p *ngIf="user.photo">
+
+      <img class=" user-photo mt-3" [src]="linkImg(user.photo)" alt="card image" />
+
+    </p>
+    <div *ngIf="!user.photo" class="no-image mt-3">
+      {{user?.firstName|slice:0:1}} {{user?.lastName | slice:0:1}}
+    </div>
+
+  </h1>
+  <form class="mt-3" [formGroup]="userForm" (ngSubmit)="updateUser()">
+    <input type="text" id="exampleFormControlInput1" placeholder="first name (required)" formControlName="firstName"
+      class="formStyle is-invalid" required />
+    <input type="text" id="exampleFormControlInput2" placeholder="last name (required)" formControlName="lastName"
+      class="formStyle is-invalid" required />
+    <input type="email" name="email" class="formStyle is-invalid" id="exampleFormControlInput3" formControlName="email"
+      placeholder="email (required)" required />
+
+    <input type="tel" name="phone" class="formStyle is-invalid" id="exampleFormControlInput3"
+      id="exampleFormControlInput4" placeholder="phone (required)" formControlName="phone" maxlength="10"
+      (keypress)=_keyPress($event) required />
+    <select class="formStyle form-control job-title" id="exampleFormControlSelect5" placeholder="job title"
+      formControlName="jobTitle">
+      <option value="" selected disabled>job title</option>
+      <option>CXO</option>
+      <option>VP</option>
+      <option>PM</option>
+      <option>OTHER</option>
+    </select>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-outline-primary"
+        [disabled]="!userForm.valid || !userForm.dirty || onGoingRequest">
+        {{onGoingRequest ? 'Please Wait': 'Update User'}}
+      </button>
+    </div>
+
+
+  </form>
+</div>

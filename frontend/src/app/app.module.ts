@@ -5,18 +5,21 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatCardModule, MatToolbarModule, MatButtonModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
 import { Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
-import { HeaderComponent } from './components/header/header.component';
-import { SignupComponent } from './components/signup/signup.component';
+import { HomeComponent } from './components/home/home.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { NewUserComponent } from './components/new-user/new-user.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    HeaderComponent,
-    SignupComponent
+    HomeComponent,
+    EditUserComponent,
+    NewUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,9 +31,17 @@ import { SignupComponent } from './components/signup/signup.component';
     MatCardModule,
     MatToolbarModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    FileUploadModule,
+    SnotifyModule,
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [{ provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+    SnotifyService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor() {
+    console.log('app started');
+  }
+}

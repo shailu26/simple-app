@@ -8,7 +8,6 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import {init} from './routes';
 import config from './config';
-
 const port = process.env.PORT || 3000;
 
 // App Setup
@@ -16,7 +15,7 @@ const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use('/static', express.static('./upload'));
 // calling routes
 init(app);
 

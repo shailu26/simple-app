@@ -1,4 +1,3 @@
-
 import {
   NgModule
 } from '@angular/core';
@@ -12,31 +11,30 @@ import {
   Route,
   RouterModule
 } from '@angular/router';
-
-import {
-  LoginComponent
-} from './components/login/login.component';
-
-import {
-  SignupComponent
-} from './components/signup/signup.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { NewUserComponent } from './components/new-user/new-user.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Route[] = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full'
 
   },
-
   {
-    path: 'login',
-    component: LoginComponent,
+    path: 'home',
+    component: HomeComponent,
 
   },
   {
-    path: 'signup',
-    component: SignupComponent,
+    path: 'edit-user/:userId',
+    component: EditUserComponent,
+
+  },
+  {
+    path: 'newuser',
+    component: NewUserComponent,
 
   },
   {

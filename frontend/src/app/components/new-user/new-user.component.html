@@ -1,0 +1,38 @@
+<ng-snotify></ng-snotify>
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="/">
+    <i class="fa fa-home fa-2x" data-toggle="tooltip" data-placement="top" title="Go to home" routerLink="/"></i>
+  </a>
+</nav>
+<div class="body">
+
+  <h1>Create New User</h1>
+  <form class="mt-3" [formGroup]="userForm" (ngSubmit)="createUser()">
+    <input type="text" id="exampleFormControlInput1" placeholder="first name (required)" formControlName="firstName"
+      class="formStyle is-invalid" required />
+    <input type="text" id="exampleFormControlInput2" placeholder="last name (required)" formControlName="lastName"
+      class="formStyle is-invalid" required />
+    <input type="email" name="email" class="formStyle is-invalid" id="exampleFormControlInput3" formControlName="email"
+      placeholder="email (required)" required />
+
+    <input type="tel" name="phone" class="formStyle is-invalid" id="exampleFormControlInput3"
+      id="exampleFormControlInput4" placeholder="phone (required)" formControlName="phone" maxlength="10"
+      (keypress)=_keyPress($event) required />
+    <select class="formStyle form-control job-title" id="exampleFormControlSelect5" placeholder="job title"
+      formControlName="jobTitle" required>
+      <option value="" selected disabled>job title</option>
+      <option>CXO</option>
+      <option>VP</option>
+      <option>PM</option>
+      <option>OTHER</option>
+    </select>
+    <input type="file" ng2FileSelect [uploader]="uploader" (onFileSelected)="onFileSelected($event)" ngf-max-size="20MB"
+      id="exampleFormControlFile6" class="file formStyle" accept="image/*">
+    <div class="text-center">
+      <button type="submit" class="btn btn-outline-primary" [disabled]="!userForm.valid">Create
+        User</button>
+    </div>
+
+
+  </form>
+</div>
