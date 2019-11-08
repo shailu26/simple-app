@@ -70,6 +70,8 @@ module.exports = {
         } else {
             saveUser(data)
             .then(userInfo => {
+                let text = `${userInfo.firstName} ${userInfo.lastName} has created a profile on your app at ${moment(new Date()).format('HH:mm a')} on ${moment(new Date()).format('LL')}.`
+                sendSlackMessage(text);
                 return res.json({'status': 200, 'userInfo': userInfo});
             })
             .catch(err => {
